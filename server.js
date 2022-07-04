@@ -7,7 +7,7 @@ app.use(express.static("files"))
 
 // define the first route
 app.get("/", function (req, res) {
-  res.sendFile("home.html")
+    res.sendFile(__dirname + "home.html")
 })
 
 // start the server listening for requests
