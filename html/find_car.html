@@ -7,6 +7,7 @@
     <title>Find Car</title>
     <link rel="stylesheet" href="../css/main.css">
     <script src="https://kit.fontawesome.com/022bb52c43.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body onload="page_load()">
     <div class="topnav">
@@ -17,6 +18,31 @@
             <button class="topbutton"><i id="change-icon" onclick="theme_change()" class="fa-solid fa-moon"></i></button>
         </div>
     </div>
+    <p id="big_text1">Tell us about yourself</p>
+    <form class="container" method="post" action="/">
+        <div class="form-group">
+            <input class="form-control">    
+        </div>
+        <div class="form-group">
+            <textarea class="form-control"></textarea>
+        </div>
+        <button>Add to MongoDB</button>
+    </form>
+    <!--<p class="med_text">Current Car</p>--> 
+    <!--
+    <form>
+        <label for="test">test</label><br>
+        <div class="dropdown">
+            <span><input type="text" id="cur_car" name="cur_car"><br></span>
+        </div>
+        <label for="cur_car">Current Car</label><br>
+        <input type="text" id="cur_car" name="cur_car"><br>
+        <input type="submit" value="Submit">
+    </form>
+    -->
+        
+
     <script src="../js/app.js"></script> 
+    <script src="../js/server.js"></script> 
 </body>
 </html>
