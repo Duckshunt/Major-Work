@@ -20,9 +20,7 @@ app.get("/", function(req,res){
     res.send('hello')
 })
 
-app.get("/find_car", function(req,res){
-    res.sendFile( "/find_car.html")
-})
+
 
 app.post("/", function(req,res){
     let newNote = new Note({
@@ -33,14 +31,7 @@ app.post("/", function(req,res){
     res.redirect("/");
 })
 
-app.post("/find_car", function(req,res){
-    let newNote = new Note({
-        title: req.body.title,
-        content: req.body.content
-    })
-    newNote.save();
-    res.redirect("/find_car");
-})
+
 
 app.listen(8080, function() {
     console.log("server is running on 8080")
