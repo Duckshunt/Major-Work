@@ -18,19 +18,25 @@ const Note = mongoose.model("Note", notesSchema)
 
 app.use(express.static("files"))
 
+app.use(bodyParser.json())
+
 // define the first route
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/files/home.html")
+    //res.sendFile("home.html")
 })
 
-app.post("/", function(req,res){
+app.post("/files/find_car.html", function(req,res){
     let newNote = new Note({
         title: req.body.title,
         content: req.body.content
     })
     newNote.save();
-    res.redirect("/");
+    res.redirect("/find_car.html");
+    
 })
+
+
 
 // start the server listening for requests
 app.listen(process.env.PORT || 3000, 

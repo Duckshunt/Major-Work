@@ -29,9 +29,9 @@ function theme_change() {
         console.log(theme)
     }
     
-    
   }
 window.addEventListener('unload', function(event) {
     localStorage.setItem('theme', theme);
     console.log(localStorage.getItem('theme'));
 })
+
