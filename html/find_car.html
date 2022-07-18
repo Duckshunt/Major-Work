@@ -10,6 +10,7 @@
     <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
 </head>
 <body onload="page_load()">
+
     <div class="topnav">
         <a href="home.html">Home</a>
         <a class="active" href="find_car.html">Find Car</a>
@@ -20,13 +21,20 @@
     </div>
     <p id="big_text1">Tell us about yourself</p>
    <!-- action="/files/find_car.html" -->
-    <form method="post" action="/files/find_car.html" >
+    <!--<form method="post" action="/files/find_car.html" >-->
+    <form>
         <div>
             <input name="title">    
         </div>
         <div>
             <textarea name="content"></textarea>
         </div>
+        <select id="brands" name="brands" onChange="changecat(this.value);">
+            <option disabled>Select a brand</option>
+          </select>
+        <select id="models" name="models">
+            
+        </select>
         <input type="submit" value="Submit" >
         <!--<button>Add to MongoDB</button>-->
     </form>
@@ -44,7 +52,7 @@
     -->
         
 
-    <script src="app.js"></script> 
+    <script src="app.js"></script>
     <!--<script src="../js/server.js"></script> -->
 </body>
 </html>
