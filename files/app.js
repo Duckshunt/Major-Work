@@ -92,7 +92,7 @@ function displayIceCars() {
 
 
 
-fetch('http://localhost:3000/data')
+fetch('/data')
     .then(res => res.json())
     .then((out) => {
         
