@@ -39,7 +39,13 @@ window.addEventListener('unload', function(event) {
 var model_list = {
     
 }
-console.log(model_list)
+var Ice_model_list = {
+    
+}
+var Ice_brands_list = {
+
+}
+//console.log(model_list)
 
 
 function changecat(value) {
@@ -53,29 +59,58 @@ function changecat(value) {
     }
 }
 
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+console.log(params, 'parameters')
+var pbrand = params.brands
+var pmodel = params.models
+var change = document.getElementById("change")
+change.innerHTML = pbrand + ' ' + pmodel
+/*
+var brand = document.getElementById("brands")
+console.log(brand, 'list')
+var selected_brand = document.getElementsByClassName(pbrand)
+console.log(selected_brand)
+//console.log(selected_brand, params.brand)
+selected_brand.selected = true
+*/
+function displayIceCars() {
+    var n = Ice_brands_list
+    var elem = document.getElementById("test")
+    for (let i = 0; i < n.length; i++) {
+        console.log(Ice_model_list);
+        console.log(Ice_model_list[n][i]);
+        elem.innerHTML = n[i] + ' ' + Ice_model_list[n[i]];
+        /*
+        for (let j = 0; j < Ice_model_list[n].length; i++) {
+            elem.innerHTML = n[i] + ' ' + Ice_model_list[n[i]];
+        }
+        */
+      }
+    //elem.innerHTML = n[0] + ' ' + Ice_model_list[n[0]]
+}
+
 
 
 fetch('http://localhost:3000/data')
     .then(res => res.json())
     .then((out) => {
-        //console.log('Output: ', out);
-        //console.log(out.brands_list)
-        //console.log(typeof(out))
+        
         var x = document.getElementById("brands")
         var l = out.brands_list
         var m = out.model_list
-        //console.log(out.model_list)
-        //console.log(m)
+        Ice_brands_list = out.Ice_brands_list
+        var o = out.Ice_model_list
+
+        //console.log(n[0])
+        //console.log(o)
+
         model_list = Object.assign(model_list, m)
-        //console.log(model_list)
-        //const obj = JSON.parse(l)
-        //console.log(l)
-        //console.log(obj, 'Object')
-        //console.log(Object.values(l))
-        //console.log(l[2])
+        Ice_model_list = Object.assign(Ice_model_list, o)
+       
         for (let i = 0; i < l.length; i++) {
             var c = document.createElement("option")
-            //console.log(l[i])
+            
             c.text = l[i];
             v = l[i].replace(' ', '-')
             c.classList.add(v);
