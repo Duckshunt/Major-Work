@@ -39,6 +39,9 @@ window.addEventListener('unload', function(event) {
 var model_list = {
     
 }
+var brands_list = {
+
+}
 var Ice_model_list = {
     
 }
@@ -49,47 +52,54 @@ var Ice_brands_list = {
 
 
 function changecat(value) {
-    if (value.length == 0) document.getElementById("models").innerHTML = "<option></option>";
-    else {
-        var catOptions = "<option disabled>Select a model</option>";
-        for (categoryId in model_list[value]) {
-            catOptions += "<option>" + model_list[value][categoryId] + "</option>";
-        }
-        document.getElementById("models").innerHTML = catOptions;
+    var catOptions = "<option disabled>Select a model</option>";
+    for (categoryId in Ice_model_list[value]) {
+        catOptions += "<option>" + Ice_model_list[value][categoryId] + "</option>";
     }
+    document.getElementById("models").innerHTML = catOptions;
+    
 }
 
-const urlSearchParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlSearchParams.entries());
-console.log(params, 'parameters')
-var pbrand = params.brands
-var pmodel = params.models
-var change = document.getElementById("change")
-change.innerHTML = pbrand + ' ' + pmodel
-/*
-var brand = document.getElementById("brands")
-console.log(brand, 'list')
-var selected_brand = document.getElementsByClassName(pbrand)
-console.log(selected_brand)
-//console.log(selected_brand, params.brand)
-selected_brand.selected = true
-*/
-function displayIceCars() {
-    var n = Ice_brands_list
+
+function displayCars() {
+    var n = brands_list
     var elem = document.getElementById("test")
+    var string = '';
     for (let i = 0; i < n.length; i++) {
-        console.log(Ice_model_list);
-        console.log(Ice_model_list[n][i]);
-        elem.innerHTML = n[i] + ' ' + Ice_model_list[n[i]];
-        /*
-        for (let j = 0; j < Ice_model_list[n].length; i++) {
-            elem.innerHTML = n[i] + ' ' + Ice_model_list[n[i]];
-        }
-        */
+        //console.log(Ice_model_list);
+        //console.log(Ice_model_list[n[i]]);
+        string += n[i] + ' ' + model_list[n[i]]+ ' ' + '<br></br>';
+       
       }
-    //elem.innerHTML = n[0] + ' ' + Ice_model_list[n[0]]
+    
+    elem.innerHTML = string
+}
+function changepage(page) {
+    var brand = document.getElementById("brands")
+    var model = document.getElementById("models")
+    var kms = document.getElementById("kms")
+    bvalue = brand.value
+    mvalue = model.value
+    kvalue = kms.value
+    window.location.href = page + '?brand=' + bvalue +'&model=' + mvalue + '&kms=' + kvalue
+    
 }
 
+function displayValues() {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    console.log(params, 'parameters')
+    var pbrand = params.brand
+    var pmodel = params.model
+    var pkms = params.kms
+    var change = document.getElementById("change")
+    change.innerHTML = pbrand + ' ' + pmodel + ' ' + pkms
+}
+
+function displayResults(car1, car2) {
+    var text = document.getElementById("table")
+    //text.innerhtml = car1.Price + car2.Price
+}
 
 
 fetch('/data')
@@ -97,16 +107,19 @@ fetch('/data')
     .then((out) => {
         
         var x = document.getElementById("brands")
-        var l = out.brands_list
-        var m = out.model_list
-        Ice_brands_list = out.Ice_brands_list
-        var o = out.Ice_model_list
+        var l = out.Ice_brands_list
+        var m = out.Ice_model_list
+        brands_list = out.brands_list
+        var o = out.model_list
 
         //console.log(n[0])
+        //console.log(out.selectedIcar.Price)
+        //console.log(out.selectedEcar.Price)
         //console.log(o)
-
-        model_list = Object.assign(model_list, m)
-        Ice_model_list = Object.assign(Ice_model_list, o)
+        //displayResults(out.selectedIcar, out.selectedEcar)
+        Ice_model_list = Object.assign(Ice_model_list, m)
+        //console.log(Ice_model_list)
+        model_list = Object.assign(model_list, o)
        
         for (let i = 0; i < l.length; i++) {
             var c = document.createElement("option")
@@ -116,6 +129,7 @@ fetch('/data')
             c.classList.add(v);
             x.options.add(c,i+1);
           }
-        changecat("Audi")
+        changecat(brands_list[0])
+        
 }).catch(err => console.error(err));
 

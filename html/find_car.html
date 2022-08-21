@@ -14,7 +14,7 @@
     <div class="topnav">
         <a href="home.html">Home</a>
         <a class="active" href="find_car.html">Find Car</a>
-        <a href="login.html">Login</a>
+        <a href="results.html">Results</a>
         <div>
             <button class="topbutton"><i id="change-icon" onclick="theme_change()" class="fa-solid fa-moon"></i></button>
         </div>
@@ -23,12 +23,14 @@
    <!-- action="/files/find_car.html" -->
     <!--<form method="post" action="/files/find_car.html" >-->
     <form>
+        <label>Input the kilometres you drive in a week on average</label>
+        <p id="big_text1"></p>
         <div>
-            <input name="title">    
+            <input name="kms" id="kms">    
         </div>
-        <div>
-            <textarea name="content"></textarea>
-        </div>
+        <p id="big_text1"></p>
+        <label>Choose your current car</label>
+        <p id="big_text1"></p>
         <select id="brands" name="brands" onChange="changecat(this.value);">
             <option disabled>Select a brand</option>
           </select>
@@ -36,15 +38,17 @@
             
         </select>
 
-        <input type="submit" value="Submit" >
+        <!--<input type="submit" value="Submit" >-->
+        <!--<button onclick="changepage('/login.html')">submit</button>-->
         <!--<button>Add to MongoDB</button>-->
     </form>
-    <p id="change">test</p>
-    <button id="testb" onclick="displayIceCars()">Click</button>
+    <button id="submit" onclick="changepage('/results.html')">submit</button>
+    <!--<button id="testb" onclick="displayCars()">Click</button>-->
     <div id="test"></div>
         
 
     <script src="app.js"></script>
+    <!--<script>changecat("Audi")</script>-->
     <!--<script src="../js/server.js"></script> -->
 </body>
 </html>
