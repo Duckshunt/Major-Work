@@ -17,7 +17,9 @@ const EcarSchema = {
     Range: Number,
     Price: Number,
     Type: String,
-    Category: String
+    Category: String,
+    ImageURL: String,
+    CarURL: String
 }
 
 const IcecarSchema = {
@@ -27,7 +29,9 @@ const IcecarSchema = {
     CO2Combined: Number,
     Price: Number,
     Type: String,
-    Category: String
+    Category: String,
+    ImageURL: String,
+    CarURL: String
 }
 
 
