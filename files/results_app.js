@@ -114,6 +114,7 @@ function displayResults(car1, car2, keys) {
     document.getElementById("RunE").innerHTML = '$ ' + String(Eprice) 
     document.getElementById("TotalI").innerHTML = '$ ' + String(Iprice+car1.Price) 
     document.getElementById("TotalE").innerHTML = '$ ' + String(Eprice+car2.Price) 
+    document.getElementById("RangeE").innerHTML = String(car2.Range) +' km'
     
 
     co2_save = Math.round(Math.abs(Iconsumption-Econsumption) * 100) / 100

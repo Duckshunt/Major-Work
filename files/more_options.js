@@ -82,13 +82,14 @@ function displayResults(car, keys) {
     CO2 = document.getElementById("CO2")
     run_cost = document.getElementById("run_cost")
     total_cost = document.getElementById("total_cost")
+    range = document.getElementById("range")
 
-    img_width = 90/(keys.length -1)
+    img_width = 90/(keys.length)
     
 
-    for (let i = 1; i < keys.length; i++) {
+    for (let i = 0; i < keys.length; i++) {
         head1 = document.createElement("th")
-        head1.innerHTML = `Option ${i}`
+        head1.innerHTML = `Option ${i+1}`
         header.appendChild(head1);
 
         model1 = document.createElement("td")
@@ -115,6 +116,10 @@ function displayResults(car, keys) {
         total_cost1 = document.createElement("td")
         total_cost1.innerHTML = '$ ' + String((carbonCost(car[keys[i]], 'E')+car[keys[i]].Price))
         total_cost.appendChild(total_cost1);
+        
+        range1 = document.createElement("td")
+        range1.innerHTML = String(car[keys[i]].Range) + ' km'
+        range.appendChild(range1);
     }
     
 }
