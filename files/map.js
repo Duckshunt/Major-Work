@@ -85,6 +85,16 @@ function codeAddress() {
   });
 }
 
+// stop the user from inputting values that aren't numbers in the input
+const input = document.getElementById("range")
+input.onkeypress = (evt) => {
+  const charCode = evt.keyCode;
+  if (charCode != 46 && charCode > 31 &&
+    (charCode < 48 || charCode > 57)) {
+    evt.preventDefault()
+  }
+}
+
 function changepage(page) {
     // get current parameters from URL
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -92,8 +102,9 @@ function changepage(page) {
     var pbrand = params.brand
     var pmodel = params.model
     var pkms = params.kms
+    var range = params.range
     //console.log(page + '?brand=' + pbrand +'&model=' + pmodel + '&kms=' + pkms)
-    window.location.href = page + '?brand=' + pbrand +'&model=' + pmodel + '&kms=' + pkms // go to specified url
+    window.location.href = page + '?brand=' + pbrand +'&model=' + pmodel + '&kms=' + pkms + '&range=' + range // go to specified url
 }
 
 window.codeAddress = codeAddress;
