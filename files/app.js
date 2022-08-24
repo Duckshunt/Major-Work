@@ -1,41 +1,40 @@
-
 var element = document.body;
 
+// get theme from local storage and load current theme
 var theme = localStorage.getItem('theme')
 x = document.getElementById("change-icon")
 function page_load(){
-    console.log(theme)
+    changecat(brands_list[0])   // make sure the model dropdown populates upon page load
     if (theme != "light-mode"){
         theme_load()
     }
   }
+
+// load current theme
 function theme_load(){
     x.classList.toggle("fa-sun");
     element.classList.toggle("dark-mode");
 }
  
+// change theme
 function theme_change() {
-    
-
     if (theme == "light-mode") {
         x.classList.toggle("fa-sun");
         element.classList.toggle("dark-mode");
-    
         theme = "dark-mode"
-        
     } else { 
         x.classList.toggle("fa-sun");
         element.classList.toggle("dark-mode");
         theme = "light-mode"
-        
-    }
-    
+    } 
   }
+// check for change theme button pressed
 window.addEventListener('unload', function(event) {
     localStorage.setItem('theme', theme);
     console.log(localStorage.getItem('theme'));
 })
 
+// defining the lists
 var model_list = {
     
 }
@@ -48,9 +47,8 @@ var Ice_model_list = {
 var Ice_brands_list = {
 
 }
-//console.log(model_list)
 
-
+// change the options in the model list based on the current selected car
 function changecat(value) {
     var catOptions = "<option disabled>Select a model</option>";
     for (categoryId in Ice_model_list[value]) {
@@ -60,20 +58,7 @@ function changecat(value) {
     
 }
 
-
-function displayCars() {
-    var n = brands_list
-    var elem = document.getElementById("test")
-    var string = '';
-    for (let i = 0; i < n.length; i++) {
-        //console.log(Ice_model_list);
-        //console.log(Ice_model_list[n[i]]);
-        string += n[i] + ' ' + model_list[n[i]]+ ' ' + '<br></br>';
-       
-      }
-    
-    elem.innerHTML = string
-}
+// change the page to the specified address while adding the brand, model and kms to the url
 function changepage(page) {
     var brand = document.getElementById("brands")
     var model = document.getElementById("models")
@@ -85,51 +70,33 @@ function changepage(page) {
     
 }
 
-function displayValues() {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const params = Object.fromEntries(urlSearchParams.entries());
-    console.log(params, 'parameters')
-    var pbrand = params.brand
-    var pmodel = params.model
-    var pkms = params.kms
-    var change = document.getElementById("change")
-    change.innerHTML = pbrand + ' ' + pmodel + ' ' + pkms
-}
 
-function displayResults(car1, car2) {
-    var text = document.getElementById("table")
-    //text.innerhtml = car1.Price + car2.Price
-}
-
-
+// get the selected data from the /data page which contains a json file with all the data sent from the server side
 fetch('/data')
     .then(res => res.json())
     .then((out) => {
         
+        // define temporary variables
         var x = document.getElementById("brands")
         var l = out.Ice_brands_list
         var m = out.Ice_model_list
         brands_list = out.brands_list
         var o = out.model_list
 
-        //console.log(n[0])
-        //console.log(out.selectedIcar.Price)
-        //console.log(out.selectedEcar.Price)
-        //console.log(o)
-        //displayResults(out.selectedIcar, out.selectedEcar)
+        // populate the model lists with the car's objects
         Ice_model_list = Object.assign(Ice_model_list, m)
-        //console.log(Ice_model_list)
         model_list = Object.assign(model_list, o)
        
+        // assign the values in the brands dropdown from the brands list
         for (let i = 0; i < l.length; i++) {
             var c = document.createElement("option")
             
             c.text = l[i];
-            v = l[i].replace(' ', '-')
+            v = l[i].replace(' ', '-') // replace any unwanted characters in the string
             c.classList.add(v);
-            x.options.add(c,i+1);
+            x.options.add(c,i+1);   // add option to list
           }
-        changecat(brands_list[0])
+        changecat(brands_list[0])   // initialise the model list for the category
         
 }).catch(err => console.error(err));
 

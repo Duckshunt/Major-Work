@@ -48,7 +48,7 @@ a:hover {
 
 a {
   float: left;
-  color: black;
+  color: var(--fontColor);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -85,6 +85,16 @@ form {
     font-size: 16px;
   }
 
+.small_btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
 .test {
     color:aqua;
     background-color:aquamarine;
@@ -92,6 +102,7 @@ form {
   }
 
 .topnav {
+    margin: 0;
     background-color: #333;
     overflow: hidden;
   }
@@ -145,7 +156,7 @@ form {
 }
 #big_text1{
   font-size: 20px;
-  margin: 20px;
+  
   text-align: left;
 }
 .med_text{
@@ -156,7 +167,7 @@ form {
 #get_started{
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 80%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
