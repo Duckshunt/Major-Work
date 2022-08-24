@@ -34,7 +34,6 @@ function theme_change() {
 // check for change theme button pressed
 window.addEventListener('unload', function(event) {
     localStorage.setItem('theme', theme);
-    console.log(localStorage.getItem('theme'));
 })
 
 // load a map centered at an address. 

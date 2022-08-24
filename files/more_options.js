@@ -4,7 +4,6 @@ var element = document.body;
 var theme = localStorage.getItem('theme')
 x = document.getElementById("change-icon")
 function page_load(){
-    console.log(theme)
     if (theme != "light-mode"){
         theme_load()
     }
@@ -31,7 +30,6 @@ function theme_change() {
 // check for change theme button pressed
 window.addEventListener('unload', function(event) {
     localStorage.setItem('theme', theme);
-    console.log(localStorage.getItem('theme'));
 })
 
 // calculate the consumption of the electric car from the energy used to power it

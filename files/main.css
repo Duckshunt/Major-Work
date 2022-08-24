@@ -19,11 +19,7 @@
     --btnFontColor: var(--white);
   }
 
-  /*
-tr:nth-child(odd) {
-    background-color: #D6EEEE;
-  }
-*/
+ 
 
 table {
     border-collapse: collapse;
@@ -33,8 +29,9 @@ table {
 tr {
     border-bottom: 1px solid #ddd;
   }
+  
 tr:hover {
-  background-color: #D6EEEE;
+  background-color: #c3d8d8;
 }
 
 
