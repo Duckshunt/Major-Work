@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV For Me</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://kit.fontawesome.com/022bb52c43.js" crossorigin="anonymous"></script> 
+    
+</head>
+<body onload="page_load()"> <!-- load current theme -->
+    <div class="topnav">    <!-- navigation bar -->
+        <a href="#home">Home</a>
+        <a href="find_car.html">Find Car</a>
+        <a onclick="changepage('/results.html')">Results</a>
+        <a class="active" onclick="changepage('/map.html')">Range Map</a>
+        <div>
+            <button class="topbutton"><i id="change-icon" onclick="theme_change()" class="fa-solid fa-moon"></i></button>
+        </div>
+    </div>
+    <h1>Range Map</h1>
+
+    <!-- Code for adding a google map: -->
+    <!-- see https://developers.google.com/maps/documentation/javascript/adding-a-google-map#maps_add_map-html -->
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <p>Input your address in the box below, the range box has been set at half your 
+        reccomended car's range to allow for round trips but you can change it as you see fit </p>
+    <p>The circle shown here has been divided by 1.5 to reflect the typical distance you will travel by road and not as the crow flies</p>
+    <p id="range_p"></p>
+    <div id="map2" style="width: 50vw; height: 34vw;"></div>
+    <div>
+        <input id="address" type="textbox" value="Sydney, NSW">
+        <input id="range" type="textbox" value="0">
+        <input type="button" value="Show" onclick="codeAddress()">
+    </div>
+
+    <!-- callback should be set to the name of a global function 
+        to be called once the Maps JavaScript API loads completely -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB36yt3mVUNgckXGBCldNQlbvf60CLM1h4&callback=initialize">
+
+    </script>
+    
+    <script src="map.js"></script>
+    <noscript>You need to enable JavaScript to view the full site.</noscript>
+</body>
+</html>

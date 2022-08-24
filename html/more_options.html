@@ -11,15 +11,45 @@
 </head>
 <body onload="page_load()"> <!-- load current theme -->
     <div class="topnav">    <!-- navigation bar -->
-        <a class="active" href="#home">Home</a>
+        <a href="#home">Home</a>
         <a href="find_car.html">Find Car</a>
-        <!--<a href="results.html">Results</a>-->
+        <a onclick="changepage('/results.html')">Results</a>
+        <a class="active" onclick="changepage('/more_options.html')">More Options</a>
         <div>
             <button class="topbutton"><i id="change-icon" onclick="theme_change()" class="fa-solid fa-moon"></i></button>
         </div>
     </div>
-    <h1 id="home_name">EV For Me</h1>
     <p id="big_text1">More results</p>
+    <table>
+        <tr id="header">
+            <th></th>
+            
+        </tr>
+        <tr id="model">
+            <td></td>
+            
+        </tr>
+        <tr id="img">
+            <td></td>
+            
+        </tr>
+        <tr id="price">
+            <td>Price</td>
+            
+        </tr>
+        <tr id="CO2">
+            <td>CO2 tons per 10 yrs</td>
+            
+        </tr>
+        <tr id="run_cost">
+            <td>10 yr running cost</td>
+            
+        </tr>
+        <tr id="total_cost">
+            <td>10 yr total cost</td>
+            
+        </tr>
+    </table>
     
    
    

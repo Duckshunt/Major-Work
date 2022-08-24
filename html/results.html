@@ -12,7 +12,8 @@
     <div class="topnav">    <!-- navigation bar -->
         <a href="home.html">Home</a>
         <a href="find_car.html">Find Car</a>
-        <a class="active" href="results.html">Results</a>
+        <a class="active" onclick="changepage('/results.html')">Results</a>
+        <a onclick="changepage('/map.html')">Range Map</a>
         <div>
             <button class="topbutton"><i id="change-icon" onclick="theme_change()" class="fa-solid fa-moon"></i></button>
         </div>
@@ -35,8 +36,8 @@
         </tr>
         <tr>
             <td></td>
-            <td id="ImgI"></td>
-            <td id="ImgE"></td>
+            <td id="ImgI" style="width:40vw"></td>
+            <td id="ImgE" style="width:40vw"></td>
         </tr>
         <tr>
             <td>Price</td>
@@ -59,13 +60,16 @@
             <td id="TotalE"></td>
         </tr>
     </table>
+    <p id="CO2_save"></p>
     <p>Disclaimer: Pricing information for electric vehicles has been provided on a drive away basis
         including on road costs such as registration and taxes. Pricing quoted should be used as a
         guide only as prices change on a daily basis and vary by state due to different stamp duty
         and registration requirements. Estimated savings on running costs are based on current fuel
         and electricity prices and should be expected to vary over time.</p>
-    <p id="big_text1">Not happy with the reccomended option? Click the button to see more options</p>
-    <button class="small_btn" onclick="changepage('/more_options.html')"><a>More Options</a></button>
+    <div id="more_options">
+        <p id="big_text1">Not happy with the reccomended option? Click the button to see more options</p>
+        <button class="small_btn" onclick="changepage('/more_options.html')"><a>More Options</a></button>
+    </div>
       
     <script src="results_app.js"></script> 
 </body>

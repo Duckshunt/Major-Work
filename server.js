@@ -141,13 +141,35 @@ app.get("/find_car.html", function (req, res) {
 
 // fetch the data from the database when the page loads and send it to the client side in a json file
 app.get("/data", function(req,res){
-    res.json({brands_list, model_list, Ice_brands_list, Ice_model_list, selectedIcar, selectedEcar})
+    res.json({brands_list, model_list, Ice_brands_list, Ice_model_list, selectedIcar, selectedEcar, selectedEcars, sorted_array})
  
 })
+
+// returns the key of the object based on the value inputted
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+  }
+
+// provides a sorted list of the key values of the object in descending order based on value
+// used to order the cars by price difference 
+function sortDict(dict){
+    key_array = Object.keys(dict)
+    var temp_array = Object.values(dict)
+    sorted_array = []
+    temp_array.sort(function(a, b){return a - b});
+    for (let i = 0; i < key_array.length; i++) {
+        value = getKeyByValue(dict, temp_array[i])
+        sorted_array.push(value)
+    }
+    return sorted_array
+} 
+
 
 // define variables
 var selectedIcar
 var selectedEcar
+var selectedEcars
+var sorted_array
 
 // a function to get the information from the database about the cars 
 // involved and populate the tables based on that
@@ -166,17 +188,19 @@ async function populateTables(brand, model, kms){
         var equery = ECar.find({Type:itype, Category:icategory}).select("-_id")
         equery.exec(function(err,eCars){ 
             if (err) return err
-            selected = 0
-            // select the car closest in price to display to the user
-            pdiff = Math.abs(iprice-eCars[0].Price)
-            for (let i = 1; i < eCars.length; i++) {
-                if (Math.abs(iprice-eCars[i].Price) < pdiff) {
-                    selected = i
-                }
+            // load all the selected cars into an object with their price
+            select_dict = {}
+            for (let i = 0; i < eCars.length; i++) {
+                select_dict[i] = Math.abs(iprice-eCars[i].Price)
+
             }
+            sorted_array = sortDict(select_dict)
+            
+
             // set the selected cars based on the results
             selectedIcar = iceCars[0]
-            selectedEcar = eCars[selected]
+            selectedEcar = eCars[sorted_array[0]] // select the car with the closest price to the users current car
+            selectedEcars = eCars
             
         })
     })
@@ -196,8 +220,21 @@ app.get("/results.html", function (req, res) {
 
 // get request for the more_options page
 app.get("/more_options.html", function (req, res) {
-    
+    // get the information from the queries in the URL
+    qbrand = req.query.brand
+    qmodel = req.query.model
+    qkms = req.query.kms
+
+    populateTables(qbrand, qmodel, qkms) // populate the tables before loading the page
+
+
     res.sendFile(__dirname + "/html/more_options.html") // send the page to the user
+
+})
+
+app.get("/map.html", function (req, res) {
+    
+    res.sendFile(__dirname + "/html/map.html") // send the page to the user
 
 })
 

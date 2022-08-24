@@ -97,17 +97,17 @@ function carbonCost(car, type) {
 }
 
 // change the values of the tables to reflect the specific values for the cars
-function displayResults(car1, car2) {
+function displayResults(car1, car2, keys) {
     // calculating the consumption and cost of runnign for each car
     Iconsumption = IconsumptionCalc(car1)
     Iprice = carbonCost(car1, 'I')
     Econsumption = EconsumptionCalc(car2)
     Eprice = carbonCost(car2, 'E')
-    console.log(car1.ImageURL)
+
     document.getElementById("NameI").innerHTML = (`<a href=${car1.CarURL}>` + String(car1.Make) + ' ' + String(car1.Model) + '</a>')
     document.getElementById("NameE").innerHTML = (`<a href=${car2.CarURL}>` + String(car2.Make) + ' ' + String(car2.Model) + '</a>')
-    document.getElementById("ImgI").innerHTML = `<img src=${car1.ImageURL} alt="model" height=200 >`
-    document.getElementById("ImgE").innerHTML = `<img src=${car2.ImageURL} alt="model" height=200>`
+    document.getElementById("ImgI").innerHTML = `<img style="display:block; width:40vw; height:30vw; object-fit: cover;" src=${car1.ImageURL} alt="model" height=200 >`
+    document.getElementById("ImgE").innerHTML = `<img style="display:block; width:40vw; height:30vw; object-fit: cover;" src=${car2.ImageURL} alt="model" height=200>`
     document.getElementById("PriceI").innerHTML = '$ ' + String(car1.Price) 
     document.getElementById("PriceE").innerHTML = '$ ' + String(car2.Price) 
     document.getElementById("CO2I").innerHTML = String(Iconsumption) 
@@ -116,6 +116,16 @@ function displayResults(car1, car2) {
     document.getElementById("RunE").innerHTML = '$ ' + String(Eprice) 
     document.getElementById("TotalI").innerHTML = '$ ' + String(Iprice+car1.Price) 
     document.getElementById("TotalE").innerHTML = '$ ' + String(Eprice+car2.Price) 
+    
+
+    co2_save = Math.round(Math.abs(Iconsumption-Econsumption) * 100) / 100
+    document.getElementById("CO2_save").innerHTML = (`<b> You will save ${co2_save} tons of carbon 
+    over 10 years by switching to this electric vehicle </b>`)
+
+    more_options = document.getElementById("more_options")
+    if (keys.length == 1) {
+        more_options.innerHTML = ''
+    }
 }
 
 // change the page while inputting certain parameters into the url such as brand, model and kms
@@ -126,7 +136,8 @@ function changepage(page) {
     var pbrand = params.brand
     var pmodel = params.model
     var pkms = params.kms
-    window.location.href = page + '?brand=' + pbrand +'&model=' + pmodel + '&kms=' + pkms // go to specified url
+    var range = Ecar.Range
+    window.location.href = page + '?brand=' + pbrand +'&model=' + pmodel + '&kms=' + pkms + '&range=' + range// go to specified url
 }
 
 // get the selected data from the /data page which contains a json file with all the data sent from the server side
@@ -136,6 +147,7 @@ fetch('/data')
         
         Icar = out.selectedIcar
         Ecar = out.selectedEcar
-        displayResults(Icar, Ecar)
+        keys = out.sorted_array
+        displayResults(Icar, Ecar, keys)
 
 }).catch(err => console.error(err));
