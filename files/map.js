@@ -95,6 +95,7 @@ input.onkeypress = (evt) => {
   }
 }
 
+// change page 
 function changepage(page) {
     // get current parameters from URL
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -103,8 +104,8 @@ function changepage(page) {
     var pmodel = params.model
     var pkms = params.kms
     var range = params.range
-    //console.log(page + '?brand=' + pbrand +'&model=' + pmodel + '&kms=' + pkms)
-    window.location.href = page + '?brand=' + pbrand +'&model=' + pmodel + '&kms=' + pkms + '&range=' + range // go to specified url
+    window.location.href = (page + '?brand=' + pbrand +'&model=' + pmodel + '&kms=' 
+    + pkms + '&range=' + range) // go to specified url
 }
 
 window.codeAddress = codeAddress;
