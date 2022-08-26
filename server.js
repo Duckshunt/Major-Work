@@ -58,7 +58,67 @@ app.use(bodyParser.json())
 
 // define the first route the user will see upon loading the project
 app.get("/", function (req, res) {
-    
+     // construct the queries to each database based on the models we defined earlier
+     var query = ECar.distinct('Make');  // only return the make/brand of the car
+     var Ice_query = IceCar.distinct('Make');
+     
+     // execute the query to the database 
+     query.exec(function(err,car){
+         if (err) return err
+         // populate the brand list with the result from the query
+         for (let i = 0; i < car.length; i++) {
+             if (!brands_list.includes(car[i])) {    // check if its in list already, if not add it to list
+                 brands_list.push(car[i])
+               }
+           }
+ 
+     })
+     // same as above
+     Ice_query.exec(function(err,car){
+         if (err) return err
+         for (let i = 0; i < car.length; i++) {
+             if (!Ice_brands_list.includes(car[i])) {
+                 Ice_brands_list.push(car[i])
+               }
+           }
+ 
+     })
+     // define the query to the database to find the make/brand and the model of the e car, without the id
+     var model_query = ECar.find({}).select({Make:1, Model:1, _id:0});
+     // execute the query
+     model_query.exec(function(err,models){
+         if (err) return err
+         // populate lists with the result
+         for (let i = 0; i < models.length; i++) {
+             x = models[i].Make
+             y = models[i].Model
+             if (!model_list[x]) {
+                 model_list[x] = [];
+                 
+             }
+             if (!model_list[x].includes(y)) {
+                 model_list[x].push(y)
+             }
+             
+         }
+     })
+     // same as above but for Ice cars
+     var Ice_model_query = IceCar.find({}).select({Make:1, Model:1, _id:0});
+     Ice_model_query.exec(function(err,models){
+         if (err) return err
+         for (let i = 0; i < models.length; i++) {
+             x = models[i].Make
+             y = models[i].Model
+             if (!Ice_model_list[x]) {
+                 Ice_model_list[x] = [];
+                 
+             }
+             if (!Ice_model_list[x].includes(y)) {
+                 Ice_model_list[x].push(y)
+             }
+             
+         }
+     })
     res.sendFile(__dirname + "/html/home.html") // send the home page file to the user
 
 })
