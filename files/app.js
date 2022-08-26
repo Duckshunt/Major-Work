@@ -108,6 +108,7 @@ fetch('/data')
             c.classList.add(v);
             x.options.add(c,i+1);   // add option to list
           }
+        changecat(brands_list[0])   // populate the models list
         
 }).catch(err => console.error(err));
 
