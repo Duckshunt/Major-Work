@@ -121,6 +121,16 @@ function displayResults(car1, car2, keys) {
     document.getElementById("CO2_save").innerHTML = (`<b> You will save ${co2_save} tons of carbon 
     over 10 years by switching to this electric vehicle </b>`)
 
+    price_diff = Math.abs((Iprice+car1.Price)-(Eprice+car2.Price))
+    if ((Iprice+car1.Price) >= Eprice+car2.Price) {
+        document.getElementById("price_comparison").innerHTML = (`<b> The electric vehicle will cost $ ${price_diff} less over the 10 years </b>`)
+    }
+    else {
+        document.getElementById("price_comparison").innerHTML = (`<b> The electric vehicle will cost $ ${price_diff} more over the 10 years </b>`)
+    }
+    
+
+
     more_options = document.getElementById("more_options")
     if (keys.length == 1) {
         more_options.innerHTML = ''

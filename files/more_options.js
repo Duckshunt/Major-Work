@@ -74,7 +74,9 @@ function carbonCost(car, type) {
     }
 }
 
+// displays the results on the page in a table
 function displayResults(car, keys) {
+    // gets the elements of each table row
     header = document.getElementById("header")
     model = document.getElementById("model")
     img = document.getElementById("img")
@@ -84,9 +86,10 @@ function displayResults(car, keys) {
     total_cost = document.getElementById("total_cost")
     range = document.getElementById("range")
 
+    // defining the images to take up a shared length of 90% of the page, e.g if there is 2 images they will each take up 45%
     img_width = 90/(keys.length)
     
-
+    // loop through every car with the key length and add their data to the table
     for (let i = 0; i < keys.length; i++) {
         head1 = document.createElement("th")
         head1.innerHTML = `Option ${i+1}`
