@@ -96,6 +96,7 @@ fetch('/data')
         Ice_model_list = Object.assign(Ice_model_list, m)
         model_list = Object.assign(model_list, o)
        
+        x.innerHTML = "<option disabled>Select a brand</option>"
         // assign the values in the brands dropdown from the brands list
         for (let i = 0; i < l.length; i++) {
             var c = document.createElement("option")
