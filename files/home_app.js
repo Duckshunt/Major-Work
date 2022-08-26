@@ -31,3 +31,11 @@ function theme_change() {
 window.addEventListener('unload', function(event) {
     localStorage.setItem('theme', theme);
 })
+
+// get the selected data from the /data page which contains a json file with all the data sent from the server side
+fetch('/data')
+    .then(res => res.json())
+    .then((out) => {
+
+
+}).catch(err => console.error(err));

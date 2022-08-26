@@ -4,10 +4,7 @@ var element = document.body;
 var theme = localStorage.getItem('theme')
 x = document.getElementById("change-icon")
 function page_load(){
-    initial_model = 'Q5'
-    var catOptions = "<option disabled>Select a model</option>";
-    catOptions += "<option>" + initial_model +"</option>"
-    document.getElementById("models").innerHTML = catOptions;
+    
     if (theme != "light-mode"){
         theme_load()
     }
