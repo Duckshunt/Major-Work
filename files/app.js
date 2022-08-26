@@ -4,7 +4,10 @@ var element = document.body;
 var theme = localStorage.getItem('theme')
 x = document.getElementById("change-icon")
 function page_load(){
-    changecat(brands_list[0])   // make sure the model dropdown populates upon page load
+    initial_model = 'Q5'
+    var catOptions = "<option disabled>Select a model</option>";
+    catOptions += "<option>" + initial_model +"</option>"
+    document.getElementById("models").innerHTML = catOptions;
     if (theme != "light-mode"){
         theme_load()
     }
@@ -105,7 +108,6 @@ fetch('/data')
             c.classList.add(v);
             x.options.add(c,i+1);   // add option to list
           }
-        changecat(brands_list[0])   // initialise the model list for the category
         
 }).catch(err => console.error(err));
 
