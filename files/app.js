@@ -74,7 +74,12 @@ function changepage(page) {
     var kms = document.getElementById("kms")
     bvalue = brand.value
     mvalue = model.value
-    kvalue = kms.value
+    if (kms.innerHTML == ""){
+        kvalue = 0
+    }
+    else{
+        kvalue = kms.value
+    }
     window.location.href = page + '?brand=' + bvalue +'&model=' + mvalue + '&kms=' + kvalue
     
 }
