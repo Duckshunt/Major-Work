@@ -74,7 +74,7 @@ function changepage(page) {
     var kms = document.getElementById("kms")
     bvalue = brand.value
     mvalue = model.value
-    if (kms.innerHTML == ""){
+    if (kms.value == ""){
         kvalue = 0
     }
     else{
